@@ -5,8 +5,16 @@ Vue.use(Vuex)
 
 
 const store = new Vuex.Store({
-	state:{},
-	mutations:{},
+	state:{
+		topBarName:''
+	},
+	mutations:{
+		setTopBarName(state,name){
+			state.topBarName = name;
+		}
+	},
 	actions:{},
 	modules:{}
 })
+
+export default store;

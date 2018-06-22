@@ -1,0 +1,57 @@
+<template>
+	<div class="layout">
+		<task-list :dataList="taskList" @change_status="changeStatus"></task-list>
+		<task-list title="已完成" :dataList="finishTaskList" @change_status="changeStatus"></task-list>
+	</div>
+</template>
+
+<script>
+	import { mapMutations } from 'vuex'
+	import TaskList from '@/components/taskList'
+	export default {
+		name: 'inbox',
+		data(){
+			return {
+				taskList:[{
+					name:'学英语',
+					isFinish:false
+				},{
+					name:'学做饭',
+					isFinish:false
+				},{
+					name:'打球',
+					isFinish:false
+				}],
+				finishTaskList:[{
+					isFinish:true,
+					name:'晨跑'
+				}]
+			}
+		},
+		methods: {
+			changeStatus(task){
+				task.isFinish = !task.isFinish;
+				if(task.isFinish){
+					this.taskList.remove(task);
+					this.finishTaskList.add(task);
+				}else{
+					this.taskList.add(task);
+					this.finishTaskList.remove(task);
+				}
+			},
+			...mapMutations([
+				'setTopBarName',
+			])
+		},
+		components:{
+			TaskList
+		},
+		created() {
+			this.setTopBarName('收集箱');
+		}
+	}
+</script>
+
+<style>
+
+</style>
