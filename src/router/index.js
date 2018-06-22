@@ -9,31 +9,30 @@ import Today from '@/views/today'
 Vue.use(Router)
 
 export default new Router({
-  routes: [
-    {
-      path: '/',
-      name: 'index',
-      component: Index,
-      children:[{
-      	path:'/inbox',
-      	name:'inbox',
-      	component:Inbox,
-      },{
-      	path:'/all',
-      	name:'all',
-      	component:All,
-      },{
-      	path:'/today',
-      	name:'today',
-      	component:Today,
-      },{
-      	path:'',
-      	redirect:'/inbox',
-      }]
-    },{
-    	path:'/signIn',
-    	name:'signIn',
-    	component:SignIn
-    }
-  ]
+	mode: 'history',
+	routes: [{
+		path: '/',
+		name: 'index',
+		component: Index,
+		children: [{
+			path: '/inbox',
+			name: 'inbox',
+			component: Inbox,
+		}, {
+			path: '/all',
+			name: 'all',
+			component: All,
+		}, {
+			path: '/today',
+			name: 'today',
+			component: Today,
+		}, {
+			path: '',
+			redirect: '/inbox',
+		}]
+	}, {
+		path: '/signIn',
+		name: 'signIn',
+		component: SignIn
+	}]
 })

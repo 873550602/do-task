@@ -5,7 +5,7 @@ import store from '@/store'
 import App from './App'
 import router from './router'
 import MuseUI from 'muse-ui'
-import theme from 'muse-ui/lib/theme';
+import theme from 'muse-ui/lib/theme'
 import 'typeface-roboto'
 import '@/api'
 import 'muse-ui/dist/muse-ui.css'

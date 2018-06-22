@@ -1,8 +1,8 @@
 <template>
 	<div class="task-list-box">
 		<my-title v-if="title" :text-title="title"></my-title>
-		<mu-list :class="{'complete':task.isFinish,'incomplete':!task.isFinish}" v-for="task in dataList">
-			<mu-list-item button :ripple="false">
+		<mu-list>
+			<mu-list-item button :class="{'complete':task.isFinish,'incomplete':!task.isFinish}" v-for="task in dataList" @touchmove="doTask($event)" >
 				<mu-list-item-action>
 					<i class="iconfont" :class="{'icon-wancheng':task.isFinish,'icon-weiwanchengrenwu':!task.isFinish}" @click="$emit('change_status',task)"></i>
 				</mu-list-item-action>
@@ -24,9 +24,15 @@
 			return {
 			}
 		},
-		components: {
-			myTitle
+		methods:{
+			doTask($event){
+				console.log('xxxxxxxxxxxx')
+				alert($event);
+			}
 		},
+		components: {
+			myTitle,
+		}
 	}
 </script>
 
@@ -38,7 +44,9 @@
 				color: #555;
 			}
 			i.icon-weiwanchengrenwu {
+				position: relative;
 				font-size: 18px;
+				z-index: 999;
 			}
 		}
 		.complete {
@@ -46,7 +54,9 @@
 				color: #ccc;
 			}
 			i.icon-wancheng {
+				position: relative;
 				font-size: 22px;
+				z-index: 999;
 			}
 		}
 	}
