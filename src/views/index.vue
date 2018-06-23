@@ -136,7 +136,7 @@
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style lang="less" scoped="scoped">
 	.sider-top {
-		padding: 30px 10px;
+		padding: 30px 10px !important;
 		height: 150px;
 		background: #42a5f5;
 		img.photo {

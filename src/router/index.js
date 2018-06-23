@@ -9,7 +9,7 @@ import Today from '@/views/today'
 Vue.use(Router)
 
 export default new Router({
-	mode: 'history',
+	mode: 'hash',
 	routes: [{
 		path: '/',
 		name: 'index',
