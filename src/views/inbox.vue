@@ -13,16 +13,20 @@
 		data(){
 			return {
 				taskList:[{
+					id:'1001',
 					name:'学英语',
 					isFinish:false
 				},{
+					id:'1002',
 					name:'学做饭',
 					isFinish:false
 				},{
+					id:'1003',
 					name:'打球',
 					isFinish:false
 				}],
 				finishTaskList:[{
+					id:'1004',
 					isFinish:true,
 					name:'晨跑'
 				}]
