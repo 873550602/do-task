@@ -12,6 +12,13 @@
 				<mu-col span="12">
 					<mu-text-field v-model="Password" icon="locked" placeholder="密码"></mu-text-field><br>
 				</mu-col>
+				<mu-col span="12">
+					<mu-button class="signin-btn" color="primary" to="/inbox">登录</mu-button><br>
+				</mu-col>
+				<mu-col span="12">
+					<a class="forget-pwd left" href="#/forgetPwd">忘记密码</a>
+					<a class="register right" href="#/register">注册</a>
+				</mu-col>
 			</mu-row>
 			<mu-row justify-content="between" class="access-account">
 			    <mu-col span="4"><img src="../assets/img/qq.png"/></mu-col>
@@ -52,6 +59,21 @@
 				width: 100%;
 				position: absolute;
 				bottom: 30px;
+			}
+			.signin-btn{
+				margin-left: 6%;
+				width:76%;
+			}
+			.forget-pwd,
+			.register{
+				margin-top: 8px;
+				color: #1976D2;
+			}
+			.forget-pwd{
+				margin-left: 15%;
+			}
+			.register{
+				margin-right: 10%;
 			}
 		}
 	}

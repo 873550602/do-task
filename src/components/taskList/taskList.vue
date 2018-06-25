@@ -1,10 +1,10 @@
 <template>
-	<div class="task-list-box" @touchmove.preventDefault="doTask($event)" @touchend="doneTask($event)" @touchstart="initTask($event)">
+	<div class="task-list-box" @touchmove="doTask($event)" @touchend="doneTask($event)" @touchstart="initTask($event)">
 		<my-title v-if="title" :text-title="title"></my-title>
 		<mu-list>
 			<mu-list-item :data-key="task.id" button :ripple="false" :class="{'complete':task.isFinish,'incomplete':!task.isFinish}" v-for="task in dataList">
 				<div tag="div" class="hidden-icon">
-					<mu-icon value="done"></mu-icon>
+					<mu-icon :value="slideIcon"></mu-icon>
 				</div>
 				<mu-list-item-action>
 					<i class="iconfont" :class="{'icon-wancheng':task.isFinish,'icon-weiwanchengrenwu':!task.isFinish}" @click.stop="$emit('change_status',task)"></i>
@@ -22,7 +22,9 @@
 		name: 'taskList',
 		props: {
 			dataList: Array,
-			title: String
+			title: String,
+			slideIcon:String,
+			successBgc:String
 		},
 		data() {
 			return {
@@ -51,7 +53,7 @@
 					muItem.css('margin-left', offset + 'px');
 					if(offset>=80){
 						this.isDone = true,
-						hiddenIcon.css('background', '#1de9b6');
+						hiddenIcon.css('background', this.successBgc);
 					}else{
 						this.isDone = false,
 						hiddenIcon.css('background', '#eee');
@@ -79,6 +81,7 @@
 							marginLeft:'100%'
 						},'fast',function(){
 							vue.$emit('change_status',selectedTask);
+							vue.isDone = false,
 							muItem.css('margin-left','0px');
 						});
 					}else{
@@ -114,6 +117,7 @@
 					padding-right: 8px;
 					background: #eee;
 					i.mu-icon {
+						margin-top: 3px;
 						font-size: 40px;
 						font-weight: bold;
 						color: #fff;

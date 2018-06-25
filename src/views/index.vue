@@ -29,7 +29,7 @@
 					<img class="photo" src="../assets/img/def_photo.png" />
 					<mu-icon size="30" color="#fff" value="search" class="right"></mu-icon>
 					<mu-flex class="flex-wrapper" justify-content="center">
-						<mu-button full-width color="#bbdefb">登录或注册</mu-button>
+						<mu-button full-width color="#bbdefb" to="/signIn">登录或注册</mu-button>
 					</mu-flex>
 				</mu-col>
 			</mu-row>

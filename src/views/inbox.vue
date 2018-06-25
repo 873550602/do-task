@@ -1,7 +1,7 @@
 <template>
 	<div class="layout">
-		<task-list :dataList="taskList" @change_status="changeStatus"></task-list>
-		<task-list title="已完成" :dataList="finishTaskList" @change_status="changeStatus"></task-list>
+		<task-list :dataList="taskList" @change_status="changeStatus" slideIcon="done" successBgc="#1de9b6"></task-list>
+		<task-list title="已完成" :dataList="finishTaskList" @change_status="changeStatus" slideIcon="clear" successBgc="#f44336"></task-list>
 	</div>
 </template>
 
