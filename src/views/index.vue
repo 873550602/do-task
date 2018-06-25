@@ -12,12 +12,22 @@
 				<mu-list slot="content">
 					<mu-list-item button>
 						<mu-list-item-content>
-							<mu-list-item-title>Menu Item 1</mu-list-item-title>
+							<mu-list-item-title>显示详细</mu-list-item-title>
 						</mu-list-item-content>
 					</mu-list-item>
 					<mu-list-item button>
 						<mu-list-item-content>
-							<mu-list-item-title>Menu Item 2</mu-list-item-title>
+							<mu-list-item-title>隐藏已完成</mu-list-item-title>
+						</mu-list-item-content>
+					</mu-list-item>
+					<mu-list-item button>
+						<mu-list-item-content>
+							<mu-list-item-title>排序</mu-list-item-title>
+						</mu-list-item-content>
+					</mu-list-item>
+					<mu-list-item button>
+						<mu-list-item-content>
+							<mu-list-item-title>分享</mu-list-item-title>
 						</mu-list-item-content>
 					</mu-list-item>
 				</mu-list>
@@ -110,7 +120,16 @@
 				</mu-list-item>
 			</mu-list>
 		</mu-drawer>
+		<mu-button class="add-btn" small fab color="primary">
+			<mu-icon value="add"></mu-icon>
+		</mu-button>
 		<router-view></router-view>
+		<mu-bottom-nav class="footer">
+			<mu-bottom-nav-item title="任务" icon="check_box"></mu-bottom-nav-item>
+			<mu-bottom-nav-item title="日历" icon="event_note"></mu-bottom-nav-item>
+			<mu-bottom-nav-item title="番茄" icon="event_note"></mu-bottom-nav-item>
+			<mu-bottom-nav-item title="设置" icon="settings"></mu-bottom-nav-item>
+		</mu-bottom-nav>
 	</mu-container>
 </template>
 
@@ -151,11 +170,26 @@
 			margin-top: 20px;
 		}
 	}
-	.mu-list{
-		.router-link-active{
-			.mu-item-title,i{
+	
+	.mu-list {
+		.router-link-active {
+			.mu-item-title,
+			i {
 				color: #0094CA;
 			}
 		}
+	}
+	
+	.add-btn {
+		position: fixed;
+		z-index: 9999;
+		right: 40px;
+		bottom: 80px;
+	}
+	
+	.footer {
+		position: fixed;
+		width: 100%;
+		bottom: 0;
 	}
 </style>

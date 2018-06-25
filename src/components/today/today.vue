@@ -34,6 +34,7 @@
 		position: relative;
 		width: 24px;
 		height: 24px;
+		text-align: center;
 		.iconfont{
 			font-size: 20px;
 		}
@@ -45,7 +46,7 @@
 	.day{
 		position: absolute;
 		top: 9px;
-		left: 3px;
+		width: 100%;
 		color: #777;
 		font-size: 1rem;
 	}
