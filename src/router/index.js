@@ -2,6 +2,7 @@ import Vue from 'vue'
 import Router from 'vue-router'
 import Index from '@/views/index'
 import SignIn from '@/views/signIn'
+import Register from '@/views/register'
 import Inbox from '@/views/inbox'
 import All from '@/views/all'
 import Today from '@/views/today'
@@ -34,5 +35,9 @@ export default new Router({
 		path: '/signIn',
 		name: 'signIn',
 		component: SignIn
+	}, {
+		path: '/Register',
+		name: 'Register',
+		component: Register
 	}]
 })

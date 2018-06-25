@@ -127,7 +127,7 @@
 		<mu-bottom-nav class="footer">
 			<mu-bottom-nav-item title="任务" icon="check_box"></mu-bottom-nav-item>
 			<mu-bottom-nav-item title="日历" icon="event_note"></mu-bottom-nav-item>
-			<mu-bottom-nav-item title="番茄" icon="event_note"></mu-bottom-nav-item>
+			<mu-bottom-nav-item title="番茄" icon="av_timer"></mu-bottom-nav-item>
 			<mu-bottom-nav-item title="设置" icon="settings"></mu-bottom-nav-item>
 		</mu-bottom-nav>
 	</mu-container>
