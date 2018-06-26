@@ -1,17 +1,22 @@
 <template>
 	<div class="layout">
-		<task-list :data-list="taskList" @change_status="changeStatus" slideIcon="done" successBgc="#1de9b6"></task-list>
-		<task-list title="已完成" :dataList="finishTaskList" @change_status="changeStatus" slideIcon="clear" successBgc="#f44336"></task-list>
+		<my-nothing text-title="没有任务，放松一下" subtext-title="点击 + 按钮添加任务" iconfont="icon-inboxempty" v-if="showNothing"></my-nothing>
+		<div v-if="!showNothing">
+			<task-list :data-list="taskList" @change_status="changeStatus" slideIcon="done" successBgc="#1de9b6"></task-list>
+			<task-list title="已完成" :dataList="finishTaskList" @change_status="changeStatus" slideIcon="clear" successBgc="#f44336"></task-list>
+		</div>
 	</div>
 </template>
 
 <script>
 	import { mapMutations } from 'vuex'
+	import myNothing from '@/components/nothing'
 	import TaskList from '@/components/taskList'
 	export default {
 		name: 'inbox',
 		data(){
 			return {
+				showNothing:true,
 				taskList:[{
 					id:'1001',
 					name:'学英语',
@@ -48,7 +53,8 @@
 			])
 		},
 		components:{
-			TaskList
+			TaskList,
+			myNothing
 		},
 		created() {
 			this.setTopBarName('收集箱');

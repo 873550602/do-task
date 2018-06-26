@@ -6,6 +6,7 @@ import Register from '@/views/register'
 import Inbox from '@/views/inbox'
 import All from '@/views/all'
 import Today from '@/views/today'
+import Notice from '@/views/notice'
 
 Vue.use(Router)
 
@@ -39,5 +40,9 @@ export default new Router({
 		path: '/Register',
 		name: 'Register',
 		component: Register
+	}, {
+		path: '/Notice',
+		name: 'Notice',
+		component: Notice
 	}]
 })

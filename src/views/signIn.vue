@@ -17,7 +17,7 @@
 				</mu-col>
 				<mu-col span="12">
 					<a class="forget-pwd left" href="#/forgetPwd">忘记密码</a>
-					<a class="register right" href="#/register">注册</a>
+					<a class="register right" href="#/register">创建账户</a>
 				</mu-col>
 			</mu-row>
 			<mu-row justify-content="between" class="access-account">
@@ -66,7 +66,7 @@
 			}
 			.forget-pwd,
 			.register{
-				margin-top: 8px;
+				margin-top: 18px;
 				color: #1976D2;
 			}
 			.forget-pwd{

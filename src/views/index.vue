@@ -4,7 +4,7 @@
 			<mu-button icon slot="left" @click="open = !open">
 				<mu-icon value="menu"></mu-icon>
 			</mu-button>
-			{{this.$store.state.topBarName}}
+			{{this.topBarName}}
 			<mu-menu slot="right">
 				<mu-button flat>
 					<mu-icon value="more_vert"></mu-icon>
@@ -36,10 +36,24 @@
 		<mu-drawer :open.sync="open" :docked="docked" :right="position === 'right'">
 			<mu-row>
 				<mu-col span="12" class="sider-top">
-					<img class="photo" src="../assets/img/def_photo.png" />
-					<mu-icon size="30" color="#fff" value="search" class="right"></mu-icon>
+					<mu-row class="photo-box">
+						<mu-col span="6">
+							<mu-col span="12"><img class="photo" src="../assets/img/def_photo.png" @click="this.toggleIsLogin" /></mu-col>
+							<mu-col span="12" class="user-name" v-show="this.userInfo.isLogin">{{this.userInfo.userName}}</mu-col>
+						</mu-col>
+						<mu-col span="6">
+							<mu-flex class="act-icon button-wrapper" justify-content="end">
+								<mu-button icon>
+									<mu-icon size="30" color="#fff" value="search"></mu-icon>
+								</mu-button>
+								<mu-button icon v-show="this.userInfo.isLogin" to="/notice">
+									<mu-icon size="30" color="#fff" value="email"></mu-icon>
+								</mu-button>
+							</mu-flex>
+						</mu-col>
+					</mu-row>
 					<mu-flex class="flex-wrapper" justify-content="center">
-						<mu-button full-width color="#bbdefb" to="/signIn">登录或注册</mu-button>
+						<mu-button full-width color="#bbdefb" to="/signIn" v-show="!this.userInfo.isLogin">登录或注册</mu-button>
 					</mu-flex>
 				</mu-col>
 			</mu-row>
@@ -120,11 +134,27 @@
 				</mu-list-item>
 			</mu-list>
 		</mu-drawer>
-		<mu-button class="add-btn" small fab color="primary">
+		<mu-button class="add-btn" small fab color="primary" @click="createTask">
 			<mu-icon value="add"></mu-icon>
 		</mu-button>
 		<router-view></router-view>
-		<mu-bottom-nav class="footer">
+		<mu-row class="footer create-task-box" v-show="isCreateTask">
+			<mu-col span="12">
+				<input type="text" class="text-task" v-model="task.name" placeholder="准备做点什么呢？"/>
+				<mu-row class="icon-act-box">
+					<mu-col span="6" class="left-box">
+						<i class="iconfont icon-rili-select"></i>
+						<i class="iconfont icon-youxianji3"></i>
+						<i class="iconfont icon-biaoji"></i>
+						<i class="iconfont icon-liebiao"></i>
+					</mu-col>
+					<mu-col offset="5" span="1" class="right-box">
+						<i class="iconfont icon-sent" :class="{disabled:!task.name.trim()}"></i>
+					</mu-col>
+				</mu-row>
+			</mu-col>
+		</mu-row>
+		<mu-bottom-nav class="footer" v-show="!isCreateTask">
 			<mu-bottom-nav-item title="任务" icon="check_box"></mu-bottom-nav-item>
 			<mu-bottom-nav-item title="日历" icon="event_note"></mu-bottom-nav-item>
 			<mu-bottom-nav-item title="番茄" icon="av_timer"></mu-bottom-nav-item>
@@ -135,18 +165,37 @@
 
 <script>
 	import myToday from '@/components/today'
+	import { mapMutations } from 'vuex'
+	import { mapState } from 'vuex'
+	import $ from 'jquery'
 	export default {
 		name: 'index',
 		data() {
 			return {
+				task:{
+					name:'',
+				},
+				isCreateTask:false,
 				downopen: '',
 				open: false,
 				docked: false,
 				position: 'left',
 				today: new Date().getDate(),
-				topBarName: '',
 			}
 		},
+		methods: {
+			createTask(){
+				this.isCreateTask = true;
+				setTimeout("$('input.text-task').focus();",10);
+			},
+			...mapMutations([
+				'toggleIsLogin'
+			])
+		},
+		computed: mapState([
+			'userInfo',
+			'topBarName'
+		]),
 		components: {
 			myToday
 		}
@@ -158,13 +207,21 @@
 		padding: 30px 10px !important;
 		height: 150px;
 		background: #42a5f5;
-		img.photo {
-			width: 50px;
-			height: 50px;
-			vertical-align: top;
-			border-radius: 25px;
-			background: #e3f2fd;
-			border: 2px solid #fff;
+		.photo-box {
+			color: #fff;
+			img.photo {
+				width: 50px;
+				height: 50px;
+				vertical-align: top;
+				border-radius: 25px;
+				background: #e3f2fd;
+				border: 2px solid #fff;
+			}
+			.user-name {
+				margin-top: 15px;
+				font-weight: bold;
+				font-size: 1.2rem;
+			}
 		}
 		.flex-wrapper {
 			margin-top: 20px;
@@ -186,10 +243,39 @@
 		right: 40px;
 		bottom: 80px;
 	}
-	
+	.create-task-box{
+		input.text-task{
+			height: 40px;
+			width: 100%;
+			padding-left: 8px;
+			color: #333;
+			border: 0;
+			outline: none;
+		}
+		.icon-act-box{
+			background: #f5f5f5;
+			height: 35px;
+			color: #90a4ae;
+			line-height: 35px;
+			.left-box{
+				i{
+					margin: 0px 12px;
+				}
+			}
+			.right-box{
+				i.disabled{
+					color: #ccc;
+				}
+				i{
+					color: #2196f3;
+				}
+			}
+		}
+	}
 	.footer {
 		position: fixed;
 		width: 100%;
 		bottom: 0;
+		box-shadow: 0px -3px 6px 2px #d5d5d5;;
 	}
 </style>

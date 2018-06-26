@@ -15,9 +15,8 @@
 				<mu-col span="12">
 					<mu-button class="signin-btn" color="primary" to="/inbox">注册</mu-button><br>
 				</mu-col>
-				<mu-col span="12">
-					<a class="forget-pwd left" href="#/forgetPwd">忘记密码</a>
-					<a class="register right" href="#/register">注册</a>
+				<mu-col span="12" class="text-center">
+					<a class="has-account" href="#/signIn">已有账户</a>
 				</mu-col>
 			</mu-row>
 			<mu-row justify-content="between" class="access-account">
@@ -64,16 +63,9 @@
 				margin-left: 6%;
 				width:76%;
 			}
-			.forget-pwd,
-			.register{
-				margin-top: 8px;
+			.has-account{
 				color: #1976D2;
-			}
-			.forget-pwd{
-				margin-left: 15%;
-			}
-			.register{
-				margin-right: 10%;
+				line-height: 50px;
 			}
 		}
 	}

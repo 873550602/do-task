@@ -8,6 +8,7 @@ import MuseUI from 'muse-ui'
 import theme from 'muse-ui/lib/theme'
 import 'typeface-roboto'
 import '@/api'
+import '@/directive'
 import 'muse-ui/dist/muse-ui.css'
 import '@/assets/css/iconfont.css'
 import '!style-loader!css-loader!less-loader!@/assets/css/com.less'//使用全局样式

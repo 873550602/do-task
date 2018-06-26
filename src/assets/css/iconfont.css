@@ -12,9 +12,28 @@
 
 .icon-wancheng:before { content: "\e63e"; }
 
+.icon-inboxempty:before { content: "\e616"; }
+
+.icon-biaoji:before { content: "\e635"; }
+
 .icon-fanqie:before { content: "\e694"; }
+
+.icon-tongzhi:before { content: "\e60c"; }
 
 .icon-weiwanchengrenwu:before { content: "\e65d"; }
 
+.icon-youxianji3:before { content: "\e71c"; }
+
+.icon-youxianji1:before { content: "\e71d"; }
+
+.icon-youxianji2:before { content: "\e71e"; }
+
 .icon-rili:before { content: "\e615"; }
+
+.icon-liebiao:before { content: "\e606"; }
+
+.icon-rili-select:before { content: "\e604"; }
+
+.icon-sent:before { content: "\e60d"; }
+
 
