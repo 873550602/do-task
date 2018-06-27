@@ -1,5 +1,5 @@
 <template>
-	<mu-container class="layout">
+	<mu-container class="layout" @click="closeCreateTask">
 		<mu-appbar style="width: 100%;" color="primary">
 			<mu-button icon slot="left" @click="open = !open">
 				<mu-icon value="menu"></mu-icon>
@@ -134,16 +134,16 @@
 				</mu-list-item>
 			</mu-list>
 		</mu-drawer>
-		<mu-button class="add-btn" small fab color="primary" @click="createTask">
+		<mu-button class="add-btn" small fab color="primary" v-show="!isCreateTask" @click.stop="createTask">
 			<mu-icon value="add"></mu-icon>
 		</mu-button>
 		<router-view></router-view>
-		<mu-row class="footer create-task-box" v-show="isCreateTask">
+		<mu-row class="footer create-task-box" v-show="isCreateTask" @click.stop>
 			<mu-col span="12">
-				<input type="text" class="text-task" v-model="task.name" placeholder="准备做点什么呢？"/>
+				<input type="text" class="text-task" v-model="task.name" placeholder="准备做点什么呢？" />
 				<mu-row class="icon-act-box">
 					<mu-col span="6" class="left-box">
-						<i class="iconfont icon-rili-select"></i>
+						<i class="iconfont icon-rili-select" @click=""></i>
 						<i class="iconfont icon-youxianji3"></i>
 						<i class="iconfont icon-biaoji"></i>
 						<i class="iconfont icon-liebiao"></i>
@@ -154,6 +154,13 @@
 				</mu-row>
 			</mu-col>
 		</mu-row>
+		<mu-dialog width="100%" :open.sync="openPop">
+			<mu-row>
+				<mu-col span="4"><my-today :date="today"></my-today></mu-col>
+				<mu-col span="4"></mu-col>
+				<mu-col span="4"></mu-col>
+			</mu-row>
+		</mu-dialog>
 		<mu-bottom-nav class="footer" v-show="!isCreateTask">
 			<mu-bottom-nav-item title="任务" icon="check_box"></mu-bottom-nav-item>
 			<mu-bottom-nav-item title="日历" icon="event_note"></mu-bottom-nav-item>
@@ -172,11 +179,12 @@
 		name: 'index',
 		data() {
 			return {
-				task:{
-					name:'',
+				task: {
+					name: '',
 				},
-				isCreateTask:false,
+				isCreateTask: false,
 				downopen: '',
+				openPop:true,
 				open: false,
 				docked: false,
 				position: 'left',
@@ -184,18 +192,23 @@
 			}
 		},
 		methods: {
-			createTask(){
+			createTask() {
 				this.isCreateTask = true;
-				setTimeout("$('input.text-task').focus();",10);
+				setTimeout("$('input.text-task').focus();", 10);
+			},
+			closeCreateTask() {
+				this.isCreateTask = false;
 			},
 			...mapMutations([
 				'toggleIsLogin'
 			])
 		},
-		computed: mapState([
-			'userInfo',
-			'topBarName'
-		]),
+		computed: {
+			...mapState([
+				'userInfo',
+				'topBarName'
+			])
+		},
 		components: {
 			myToday
 		}
@@ -243,8 +256,9 @@
 		right: 40px;
 		bottom: 80px;
 	}
-	.create-task-box{
-		input.text-task{
+	
+	.create-task-box {
+		input.text-task {
 			height: 40px;
 			width: 100%;
 			padding-left: 8px;
@@ -252,30 +266,32 @@
 			border: 0;
 			outline: none;
 		}
-		.icon-act-box{
+		.icon-act-box {
 			background: #f5f5f5;
 			height: 35px;
 			color: #90a4ae;
 			line-height: 35px;
-			.left-box{
-				i{
+			.left-box {
+				i {
 					margin: 0px 12px;
 				}
 			}
-			.right-box{
-				i.disabled{
+			.right-box {
+				i.disabled {
 					color: #ccc;
 				}
-				i{
+				i {
 					color: #2196f3;
 				}
 			}
 		}
 	}
+	
 	.footer {
 		position: fixed;
 		width: 100%;
 		bottom: 0;
-		box-shadow: 0px -3px 6px 2px #d5d5d5;;
+		box-shadow: 0px -3px 6px 2px #d5d5d5;
+		;
 	}
 </style>
